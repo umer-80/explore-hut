@@ -4,12 +4,10 @@
   "description": "Explore Hut Enterprise Backend API",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "lint": "eslint src/**/*.ts",
-    "test": "jest"
-  },
+  "build": "tsc",
+  "start": "node dist/server.js",
+  "choreo-build": "npm run build && cp dist/server.js ./server.js"
+}
   "keywords": [
     "express",
     "mongodb",
