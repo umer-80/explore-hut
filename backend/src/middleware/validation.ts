@@ -35,7 +35,7 @@ export const validateQuery = (schema: ZodSchema) => {
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Convert query params to appropriate types
-      const query = { ...req.query };
+      const query: Record<string, any> = { ...req.query };
       
       // Convert numeric strings to numbers
       Object.keys(query).forEach((key) => {

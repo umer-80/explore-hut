@@ -8,9 +8,14 @@ export const generateAccessToken = (userId: string, email: string): string => {
     email,
   };
 
-  return jwt.sign(payload, process.env.JWT_SECRET as string, {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET is not defined');
+  }
+
+  return jwt.sign(payload, secret, {
     expiresIn: process.env.JWT_EXPIRE || '15m',
-  });
+  } as any);
 };
 
 // Generate Refresh Token (long-lived)
@@ -23,22 +28,32 @@ export const generateRefreshToken = (
     tokenVersion,
   };
 
-  return jwt.sign(payload, process.env.JWT_REFRESH_SECRET as string, {
+  const secret = process.env.JWT_REFRESH_SECRET;
+  if (!secret) {
+    throw new Error('JWT_REFRESH_SECRET is not defined');
+  }
+
+  return jwt.sign(payload, secret, {
     expiresIn: process.env.JWT_REFRESH_EXPIRE || '7d',
-  });
+  } as any);
 };
 
 // Verify Access Token
 export const verifyAccessToken = (token: string): IJwtPayload => {
-  return jwt.verify(token, process.env.JWT_SECRET as string) as IJwtPayload;
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET is not defined');
+  }
+  return jwt.verify(token, secret) as IJwtPayload;
 };
 
 // Verify Refresh Token
 export const verifyRefreshToken = (token: string): IRefreshTokenPayload => {
-  return jwt.verify(
-    token,
-    process.env.JWT_REFRESH_SECRET as string
-  ) as IRefreshTokenPayload;
+  const secret = process.env.JWT_REFRESH_SECRET;
+  if (!secret) {
+    throw new Error('JWT_REFRESH_SECRET is not defined');
+  }
+  return jwt.verify(token, secret) as IRefreshTokenPayload;
 };
 
 // Generate Token Pair

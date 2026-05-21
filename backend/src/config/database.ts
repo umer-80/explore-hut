@@ -46,6 +46,11 @@ const createGeoIndexes = async (): Promise<void> => {
   try {
     const db = mongoose.connection.db;
     
+    if (!db) {
+      console.log('⚠️  Database not ready for index creation');
+      return;
+    }
+    
     // Create 2dsphere index for geo-spatial queries on geoLocation field
     await db.collection('listings').createIndex({ geoLocation: '2dsphere' });
     

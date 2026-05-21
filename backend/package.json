@@ -2,12 +2,15 @@
   "name": "explorehut-backend-enterprise",
   "version": "2.0.0",
   "description": "Explore Hut Enterprise Backend API",
-  "main": "dist/server.js",
+  "main": "server.js",
   "scripts": {
-  "build": "tsc",
-  "start": "node dist/server.js",
-  "choreo-build": "npm run build && cp dist/server.js ./server.js"
-}
+    "build": "tsc",
+    "start": "node server.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest",
+    "clean": "rm -rf config middleware models routes types utils validators server.js *.d.ts *.js.map"
+  },
   "keywords": [
     "express",
     "mongodb",

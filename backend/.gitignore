@@ -3,3 +3,22 @@ node_modules
 .DS_Store
 uploads/
 *.log
+
+# TypeScript compiled output (will be generated during build)
+server.js
+server.js.map
+server.d.ts
+config/
+middleware/
+models/
+routes/
+types/
+utils/
+validators/
+*.js
+*.js.map
+*.d.ts
+!src/**/*.js
+
+# Keep source files
+!src/
