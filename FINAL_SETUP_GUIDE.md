@@ -225,16 +225,16 @@ ExploreHut/
 ```env
 NODE_ENV=development
 PORT=5000
-MONGODB_URI=mongodb+srv://Umer:12345test@cluster0.muifkjm.mongodb.net/explorehut
-JWT_SECRET=enterprise_jwt_secret
+MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@cluster.mongodb.net/explorehub
+JWT_SECRET=your_super_secret_jwt_key_change_in_production
 JWT_EXPIRE=15m
-JWT_REFRESH_SECRET=enterprise_refresh_secret
+JWT_REFRESH_SECRET=your_super_secret_refresh_key_change_in_production
 JWT_REFRESH_EXPIRE=7d
 REDIS_HOST=localhost
 REDIS_PORT=6379
-CLOUDINARY_CLOUD_NAME=dmsxnop1b
-CLOUDINARY_API_KEY=765933883824888
-CLOUDINARY_API_SECRET=i8sqbfISCEh5nJ17MYpXeLkP5yY
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 **Frontend (package.json proxy):**

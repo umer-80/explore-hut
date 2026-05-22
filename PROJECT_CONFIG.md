@@ -90,8 +90,8 @@ ExploreHut/
 ### Database Configuration
 ```
 Type: MongoDB Atlas (Cloud)
-Connection String: mongodb+srv://Umer:12345test@cluster0.muifkjm.mongodb.net/explorehut
-Database Name: explorehut
+Connection String: mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@cluster.mongodb.net/explorehub
+Database Name: explorehub
 Collections:
   - users
   - listings
@@ -101,9 +101,9 @@ Collections:
 ### Image Storage
 ```
 Service: Cloudinary
-Cloud Name: dmsxnop1b
-API Key: 765933883824888
-API Secret: i8sqbfISCEh5nJ17MYpXeLkP5yY
+Cloud Name: your_cloudinary_cloud_name
+API Key: your_cloudinary_api_key
+API Secret: your_cloudinary_api_secret
 Folder: ExploreHut-MERN
 ```
 
@@ -120,7 +120,7 @@ Frontend URL: http://localhost:3000
 Method: JWT (JSON Web Tokens)
 Token Expiry: 7 days
 Password Hashing: bcrypt (10 rounds)
-Secret Key: your_jwt_secret_key_change_in_production
+Secret Key: Set in environment variables (JWT_SECRET)
 ```
 
 ---
@@ -623,7 +623,7 @@ Please implement the following UI and contextual updates:
 
 //changes for git and guthub 
 https://github.com/umer-80/explore-hut.git
-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 (This is my github token you can use for my gihub you might need it)
+
 I have created an empty GitHub repository. I need you to initialize local Git tracking for this project and push the entire codebase up to GitHub for the first time.
 
 Please execute the following operations in the terminal sequentially:
@@ -637,7 +637,40 @@ Please execute the following operations in the terminal sequentially:
 
 Confirm when the upload is complete so I can refresh my GitHub dashboard!
 
+//DEPLOYMENT UPDATE NEEDS FIX
+I am deploying a Node.js Express backend built with TypeScript to Choreo (which uses a Nixpacks build engine). The backend code lives in a subdirectory of my monorepo called /backend.
+
+    The Problem: > The Choreo build keeps failing with this exact runtime crash error:
+    Error: Cannot find module '/home/choreoapp/workspace/server.js'
+
+    My TypeScript code compiles fine into a dist/ directory, resulting in dist/server.js. However, Choreo's execution runtime completely ignores the custom npm start or build directory paths, and strictly forces a check for a raw server.js file right in the root of the /backend directory workspace. Because it can't find a file at the root path, it crashes instantly.
+
+    What I need you to do:
+
+        Look at my /backend/package.json and my current build scripts.
+
+        Modify the package.json scripts block so that when the build runs, it compiles the TypeScript files (tsc) and then copies or moves the generated server.js file from the dist/ folder directly out to the root /backend/ directory.
+
+        Make sure that any relative import paths inside the compiled code (like connections to config files, routes, or modules) won't break when the main file runs from the root instead of inside dist/.
+
+        Rewrite the script block cleanly so I can just save it, push it to GitHub, and let Choreo run a standard startup without module-not-found errors.
+
+
+Context & Goal:
+I am changing this repository from private to Public. Because of this, I need to completely scrub all hardcoded credentials, API keys, database strings, and personal account secrets out of the codebase so it is 100% safe for public view.
+
+Strict Instructions:
+
+    Scan and Remove: Audit the entire codebase for any hardcoded MONGO_URI, REDIS_URL, JWT_SECRET, GitHub Personal Access Tokens, session secrets, or any private API keys.
+
+    Implement Environment Variables: Completely replace any hardcoded secret strings with dynamic references to environment variables using process.env (for Node.js/TypeScript files) or process.env.NEXT_PUBLIC_ / Vite equivalents depending on whether the file is frontend or backend.
+
+    Preserve Logic & Features: Ensure that replacing these raw values with process.env variables does not change, break, or drop any application logic. The site must load, connect, and process features exactly as it did before.
+
+    Gitignore Verification: Double-check that any local .env files are properly listed inside the .gitignore file so they never accidentally get pushed to the public history.
+
 > Use the format shown in "HOW TO REQUEST CHANGES" section above
+
 
 ### Example Format (Delete this after reading):
 ```

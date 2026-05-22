@@ -25,6 +25,7 @@
 - [Tech Stack](#-tech-stack)
 - [Architecture](#-architecture)
 - [Getting Started](#-getting-started)
+- [Security Setup](#-security-setup)
 - [API Documentation](#-api-documentation)
 - [Deployment](#-deployment)
 - [Performance](#-performance)
@@ -277,6 +278,41 @@ docker-compose down
 ```
 
 **Note:** Redis is optional. The application works without it, but caching provides 20x performance improvement.
+
+---
+
+## 🔒 Security Setup
+
+**⚠️ IMPORTANT:** This repository does NOT contain hardcoded credentials. All sensitive information must be configured using environment variables.
+
+### **Quick Setup:**
+
+1. **Copy example environment files:**
+   ```bash
+   cp backend/.env.example backend/.env
+   cp frontend/.env.example frontend/.env
+   ```
+
+2. **Update with your credentials:**
+   - MongoDB Atlas connection string
+   - Cloudinary API keys
+   - JWT secrets (generate strong random strings)
+
+3. **Never commit `.env` files:**
+   - Already protected by `.gitignore`
+   - Contains your private credentials
+
+### **📚 Complete Security Guide:**
+
+See [SECURITY_SETUP.md](./SECURITY_SETUP.md) for:
+- How to get your credentials
+- Environment variable configuration
+- Deployment security best practices
+- What to do if secrets are exposed
+
+**Required Services:**
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - Free tier available
+- [Cloudinary](https://cloudinary.com/) - Free tier available
 
 ---
 
