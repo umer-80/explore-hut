@@ -60,7 +60,6 @@ frontend/build/
 frontend/.env
 
 # Package manager
-package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
