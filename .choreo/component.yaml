@@ -1,0 +1,8 @@
+# Choreo Component Configuration
+schemaVersion: 1.0
+id: explore-hub-backend
+name: Explore Hub Backend
+type: Service
+port: 5000
+buildPack: nodejs
+projectPath: backend

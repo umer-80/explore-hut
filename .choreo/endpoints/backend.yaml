@@ -1,0 +1,23 @@
+# Choreo Backend Configuration
+schemaVersion: 1.0
+
+# Endpoint configuration
+id: backend
+name: Backend API
+type: Service
+port: 5000
+
+# Build configuration
+build:
+  buildType: dockerfile
+  dockerContext: backend
+  dockerfile: backend/Dockerfile
+
+# Environment configuration
+env:
+  - name: NODE_ENV
+    valueFrom: STATIC
+    value: production
+  - name: PORT
+    valueFrom: STATIC
+    value: "5000"
