@@ -15,7 +15,7 @@ RUN npm ci && npm cache clean --force
 # Copy source code
 COPY src ./src
 
-# Build TypeScript (outputs to root directory)
+# Build TypeScript
 RUN npm run build
 
 # Stage 2: Production
@@ -29,16 +29,8 @@ COPY package*.json ./
 # Install production dependencies only
 RUN npm ci --only=production && npm cache clean --force
 
-# Copy built files from builder (now in root directory)
-COPY --from=builder /app/*.js ./
-COPY --from=builder /app/*.d.ts ./
-COPY --from=builder /app/config ./config
-COPY --from=builder /app/middleware ./middleware
-COPY --from=builder /app/models ./models
-COPY --from=builder /app/routes ./routes
-COPY --from=builder /app/types ./types
-COPY --from=builder /app/utils ./utils
-COPY --from=builder /app/validators ./validators
+# Copy built files from builder
+COPY --from=builder /app/dist ./dist
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
@@ -57,5 +49,5 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:5000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
-# Start application (server.js is now in root)
-CMD ["node", "server.js"]
+# Start application
+CMD ["node", "dist/server.js"]
