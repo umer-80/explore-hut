@@ -6,3 +6,4 @@ type: Service
 port: 5000
 buildPack: nodejs
 projectPath: backend
+buildCommand: npm run build
